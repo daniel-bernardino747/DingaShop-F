@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { isEmail } from 'validator';
+import { loginHelper, registerHelper } from '../../helpers/auth.helpers';
 
 export default function AuthForm({ isLogin, isRegister }) {
   const {
@@ -11,25 +12,27 @@ export default function AuthForm({ isLogin, isRegister }) {
     formState: { isSubmitting, errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const watchPassword = isRegister ? watch('password') : '';
 
   function onSubmit(data) {
     return new Promise((resolve) => {
       if (isLogin) {
-        const { email, password } = data;
-        console.log('login', email, password);
-        setTimeout(() => {
-          resolve();
-        }, 2000);
+        loginHelper(data).then((reply) => {
+          if (reply) {
+            resolve();
+            navigate('/');
+          }
+        });
       }
       if (isRegister) {
-        const {
-          name, email, password, passConfirm,
-        } = data;
-        console.log('register', name, email, password, passConfirm);
-        setTimeout(() => {
-          resolve();
-        }, 2000);
+        registerHelper(data).then((reply) => {
+          if (reply) {
+            resolve();
+            navigate('/app/login');
+          }
+        });
       }
     });
   }
