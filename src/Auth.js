@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-export default function App({ children }) {
+export default function Auth({ children }) {
   return (
     <>
       <header>
-        Oii, sou o header
+        Oii, sou o header do auth
       </header>
       <div>
         {children}
@@ -12,6 +12,6 @@ export default function App({ children }) {
     </>
   );
 }
-App.propTypes = {
+Auth.propTypes = {
   children: PropTypes.object,
 };
