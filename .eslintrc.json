@@ -23,6 +23,11 @@
         "react/forbid-prop-types": "off",
         "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
         "react/jsx-no-constructed-context-values": "off",
+        "react/jsx-props-no-spreading": ["error", {
+            "html": ["enforce", { "exceptions": "input" }],
+            "custom": "ignore",
+            "explicitSpread": "enforce"
+        }],
         "react/react-in-jsx-scope": "off",
         "react/require-default-props": "off"
     }
