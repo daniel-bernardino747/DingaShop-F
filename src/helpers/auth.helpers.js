@@ -29,7 +29,7 @@ export async function registerHelper(data) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'We were unable to login to the server',
+          text: 'We were unable to register your username on the server.',
           footer: `Server error: ${reply.error}`,
         });
       }
