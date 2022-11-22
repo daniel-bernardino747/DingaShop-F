@@ -11,13 +11,14 @@ import Login from '../pages/Login';
 import Error from '../pages/Error';
 import Register from '../pages/Register';
 import Auth from '../Auth';
+import Header from '../components/Header';
 
 const routers = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route path="/" element={<App />}>
       <Route
         index
-        element={<App><Home /></App>}
+        element={<Header><Home /></Header>}
         errorElement={<Error />}
       />
       <Route
