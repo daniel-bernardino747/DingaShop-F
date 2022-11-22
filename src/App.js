@@ -1,17 +1,8 @@
-import PropTypes from 'prop-types';
+import { Outlet } from 'react-router-dom';
 
-export default function App({ children }) {
+export default function App() {
   return (
-    <>
-      <header>
-        Oii, sou o header
-      </header>
-      <div>
-        {children}
-      </div>
-    </>
+    <Outlet />
+
   );
 }
-App.propTypes = {
-  children: PropTypes.object,
-};
