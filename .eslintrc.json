@@ -24,7 +24,7 @@
         "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
         "react/jsx-no-constructed-context-values": "off",
         "react/jsx-props-no-spreading": ["error", {
-            "html": ["enforce", { "exceptions": "input" }],
+            "html": "enforce",
             "custom": "ignore",
             "explicitSpread": "enforce"
         }],
