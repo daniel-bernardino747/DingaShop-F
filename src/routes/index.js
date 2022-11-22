@@ -12,6 +12,8 @@ import Error from '../pages/Error';
 import Register from '../pages/Register';
 import Auth from '../Auth';
 import Header from '../components/Header';
+import Cart from '../pages/Cart';
+import User from '../pages/User';
 
 const routers = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +21,16 @@ const routers = createBrowserRouter(
       <Route
         index
         element={<Header><Home /></Header>}
+        errorElement={<Error />}
+      />
+      <Route
+        path="/cart"
+        element={<Header><Cart /></Header>}
+        errorElement={<Error />}
+      />
+      <Route
+        path="/user"
+        element={<Header><User /></Header>}
         errorElement={<Error />}
       />
       <Route
