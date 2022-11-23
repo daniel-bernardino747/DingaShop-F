@@ -7,13 +7,16 @@ import {
 // import PrivateRoute from './private.routes';
 import App from '../App';
 import Home from '../pages/Home';
+// import Home, { loader as catalogLoader } from '../pages/Home';
 import Login from '../pages/Login';
 import Error from '../pages/Error';
 import Register from '../pages/Register';
 import Auth from '../Auth';
 import Header from '../components/Header';
-import Cart from '../pages/Cart';
 import User from '../pages/User';
+import Product from '../pages/Product';
+import Cart from '../pages/Cart';
+// import Product, { loader as productLoader } from '../pages/Product';
 
 const routers = createBrowserRouter(
   createRoutesFromElements(
@@ -21,11 +24,19 @@ const routers = createBrowserRouter(
       <Route
         index
         element={<Header><Home /></Header>}
+        // loader={catalogLoader}
         errorElement={<Error />}
       />
       <Route
-        path="/cart"
+        path="product/:id"
+        element={<Header><Product /></Header>}
+        // loader={productLoader}
+        errorElement={<Error />}
+      />
+      <Route
+        path="cart"
         element={<Header><Cart /></Header>}
+        // loader={productLoader}
         errorElement={<Error />}
       />
       <Route

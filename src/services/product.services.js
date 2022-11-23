@@ -5,3 +5,8 @@ export async function getProduct(id, config) {
     .then((product) => ({ product, sucess: true }))
     .catch((error) => ({ error, sucess: false }));
 }
+export async function getCatalog() {
+  return axios.get('url')
+    .then((catalog) => ({ catalog, sucess: true }))
+    .catch((error) => ({ error, sucess: false }));
+}
