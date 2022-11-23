@@ -24,6 +24,7 @@ export default function AuthForm({ isLogin, isRegister }) {
             resolve();
             navigate('/');
           }
+          resolve();
         });
       }
       if (isRegister) {
@@ -32,6 +33,7 @@ export default function AuthForm({ isLogin, isRegister }) {
             resolve();
             navigate('/app/login');
           }
+          resolve();
         });
       }
     });
@@ -39,7 +41,7 @@ export default function AuthForm({ isLogin, isRegister }) {
 
   return (
     <>
-      <forms onSubmit={(handleSubmit(onSubmit))}>
+      <form onSubmit={(handleSubmit(onSubmit))}>
         {isRegister && (
           <label htmlFor="i-name">
             <h2>Name:</h2>
@@ -112,17 +114,15 @@ export default function AuthForm({ isLogin, isRegister }) {
           </label>
         )}
 
-        {(isLogin || isRegister) && (
-          <label htmlFor="i-submit">
-            <input
-              id="i-submit"
-              type="submit"
-              disabled={isSubmitting}
-              value={isSubmitting ? 'Loading...' : 'Continue'}
-            />
+        {/* {(isLogin || isRegister) && ( */}
+        <button
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Loading...' : 'Continue'}
 
-          </label>
-        )}
+        </button>
+        {/* )} */}
 
         {isRegister && (
           <p>
@@ -133,7 +133,7 @@ export default function AuthForm({ isLogin, isRegister }) {
             </Link>
           </p>
         )}
-      </forms>
+      </form>
 
       {isLogin && (
       <div>
