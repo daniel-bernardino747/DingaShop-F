@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export async function getProduct(id, config) {
-  return axios.get(`url/:${id}`, config)
+export async function getProduct(id) {
+  return axios.get(`http://${process.env.REACT_APP_API}/product/${id}`)
     .then((product) => ({ product, sucess: true }))
     .catch((error) => ({ error, sucess: false }));
 }
 export async function getCatalog() {
-  return axios.get('url')
+  return axios.get(`http://${process.env.REACT_APP_API}/products`)
     .then((catalog) => ({ catalog, sucess: true }))
     .catch((error) => ({ error, sucess: false }));
 }
