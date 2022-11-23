@@ -7,6 +7,7 @@ import {
 // import PrivateRoute from './private.routes';
 import App from '../App';
 import Home from '../pages/Home';
+// import Home, { loader as catalogLoader } from '../pages/Home';
 import Login from '../pages/Login';
 import Error from '../pages/Error';
 import Register from '../pages/Register';
@@ -21,6 +22,7 @@ const routers = createBrowserRouter(
       <Route
         index
         element={<Header><Home /></Header>}
+        // loader={catalogLoader}
         errorElement={<Error />}
       />
       <Route
