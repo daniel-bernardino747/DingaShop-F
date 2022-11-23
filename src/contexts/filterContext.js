@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const FilterContext = createContext({});
+const FilterContext = createContext('');
 
 export default FilterContext;
