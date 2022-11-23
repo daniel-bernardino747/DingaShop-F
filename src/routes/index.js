@@ -12,6 +12,8 @@ import Error from '../pages/Error';
 import Register from '../pages/Register';
 import Auth from '../Auth';
 import Header from '../components/Header';
+import Product from '../pages/Product';
+// import Product, { loader as productLoader } from '../pages/Product';
 
 const routers = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +21,12 @@ const routers = createBrowserRouter(
       <Route
         index
         element={<Header><Home /></Header>}
+        errorElement={<Error />}
+      />
+      <Route
+        path="product/:id"
+        element={<Header><Product /></Header>}
+        // loader={productLoader}
         errorElement={<Error />}
       />
       <Route
