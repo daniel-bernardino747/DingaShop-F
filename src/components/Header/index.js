@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useState } from 'react';
 import logo from '../../assets/image/logo.png';
 import user from '../../assets/image/UserPerfil.png';
 import Search from '../Search';
+import FilterContext from '../../contexts/filterContext';
 
 export default function Header({ children }) {
+  const [filterText, setFilterText] = useState('');
   return (
-    <>
+    <FilterContext.Provider value={{ filterText, setFilterText }}>
       <HeaderContainer>
         <Link to="/">
           <Logo src={logo} alt="logo" />
@@ -23,7 +26,7 @@ export default function Header({ children }) {
       <div>
         {children}
       </div>
-    </>
+    </FilterContext.Provider>
   );
 }
 
