@@ -13,6 +13,7 @@ import Error from '../pages/Error';
 import Register from '../pages/Register';
 import Auth from '../Auth';
 import Header from '../components/Header';
+import User from '../pages/User';
 import Product from '../pages/Product';
 import Cart from '../pages/Cart';
 // import Product, { loader as productLoader } from '../pages/Product';
@@ -36,6 +37,11 @@ const routers = createBrowserRouter(
         path="cart"
         element={<Header><Cart /></Header>}
         // loader={productLoader}
+        errorElement={<Error />}
+      />
+      <Route
+        path="/user"
+        element={<Header><User /></Header>}
         errorElement={<Error />}
       />
       <Route
