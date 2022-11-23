@@ -14,6 +14,7 @@ import Register from '../pages/Register';
 import Auth from '../Auth';
 import Header from '../components/Header';
 import Product from '../pages/Product';
+import Cart from '../pages/Cart';
 // import Product, { loader as productLoader } from '../pages/Product';
 
 const routers = createBrowserRouter(
@@ -28,6 +29,12 @@ const routers = createBrowserRouter(
       <Route
         path="product/:id"
         element={<Header><Product /></Header>}
+        // loader={productLoader}
+        errorElement={<Error />}
+      />
+      <Route
+        path="cart"
+        element={<Header><Cart /></Header>}
         // loader={productLoader}
         errorElement={<Error />}
       />

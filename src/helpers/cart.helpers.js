@@ -1,5 +1,27 @@
 import Swal from 'sweetalert2';
-import { deleteProductToCart, putProductToCart } from '../services/cart.services';
+import { deleteProductToCart, getCart, putProductToCart } from '../services/cart.services';
+
+export async function viewCart() {
+  const token = '';
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  return getCart(config)
+    .then((reply) => {
+      if (reply.sucess) {
+        return reply.cart;
+      }
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'We have a problem to show your cart',
+        footer: `Server error: ${reply.error}`,
+      });
+      return reply.sucess;
+    });
+}
 
 export async function addProductToCart(id) {
   const token = '';
