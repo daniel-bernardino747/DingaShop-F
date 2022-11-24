@@ -7,6 +7,6 @@ export async function getProduct(id) {
 }
 export async function getCatalog() {
   return axios.get(`http://${process.env.REACT_APP_API}/products`)
-    .then((catalog) => ({ catalog, sucess: true }))
+    .then((answer) => ({ catalog: answer.data.catalog, sucess: true }))
     .catch((error) => ({ error, sucess: false }));
 }
