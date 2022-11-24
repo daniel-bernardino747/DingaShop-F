@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import styled from 'styled-components';
+import Searchbar from '../Header/style';
 import FilterContext from '../../contexts/filterContext';
 
 export default function Search() {
@@ -11,10 +11,3 @@ export default function Search() {
     />
   );
 }
-
-const Searchbar = styled.input`
-width: 559px;
-height: 46px;
-background: #D9D9D9;
-border-radius: 9px;
-`;
