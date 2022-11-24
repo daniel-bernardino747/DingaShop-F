@@ -1,10 +1,12 @@
 import AuthForm from '../../components/AuthForm';
 
+import * as s from '../../components/AuthForm/style';
+
 export default function Register() {
   return (
-    <div>
-      <h1>Sign-in</h1>
+    <s.Container>
+      <s.Title>Sign-up</s.Title>
       <AuthForm isRegister />
-    </div>
+    </s.Container>
   );
 }

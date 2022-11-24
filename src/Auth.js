@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
+import ResetCSS, { AuthContainer } from './assets/global.style';
+import lightLogo from './assets/image/logo-lightbg.svg';
 
 export default function Auth({ children }) {
   return (
     <>
-      <header>
-        Oii, sou o header do auth
-      </header>
-      <div>
+      <ResetCSS />
+      <AuthContainer>
+        <header>
+          <img src={lightLogo} alt="logo" />
+        </header>
         {children}
-      </div>
+      </AuthContainer>
     </>
   );
 }
