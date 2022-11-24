@@ -23,14 +23,14 @@ export async function viewCart() {
     });
 }
 
-export async function addProductToCart(id) {
+export async function addProductToCart(idProduct) {
   const token = '';
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  return putProductToCart(id, config)
+  return putProductToCart(idProduct, config)
     .then((reply) => {
       if (reply.sucess) {
         Swal.fire({
@@ -50,8 +50,21 @@ export async function addProductToCart(id) {
     });
 }
 
-export async function removeProductToCart(name, id) {
-  const confirm = window.confirm(`Are you sure you want to remove ${name} from the cart?`);
+export async function removeProductToCart(name, idCart) {
+  const confirm = Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Yes, delete it!',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      return true;
+    }
+    return false;
+  });
   if (!confirm) return false;
 
   const token = '';
@@ -60,14 +73,14 @@ export async function removeProductToCart(name, id) {
       Authorization: `Bearer ${token}`,
     },
   };
-  return deleteProductToCart(id, config)
+  return deleteProductToCart(idCart, config)
     .then((reply) => {
       if (reply.sucess) {
-        Swal.fire({
-          icon: 'sucess',
-          title: 'Sucess',
-          text: `The ${name} has been deleted`,
-        });
+        Swal.fire(
+          'Deleted!',
+          `The ${name} has been deleted to cart.`,
+          'success',
+        );
         return reply.message;
       }
       Swal.fire({
