@@ -1,19 +1,22 @@
 import PropTypes from 'prop-types';
+import * as s from './style';
 
 export default function BoxCategory({ category, products }) {
   return (
-    <div>
-      <h1>{category}</h1>
-      <div style={{ display: 'flex' }}>
-        {products
-          .filter((p) => p.product.category.includes(category))
-          .map((p) => (
-            <div key={p._id}>
-              <img src={p.product.image} alt={p.product.name} style={{ width: '10em' }} />
-            </div>
-          ))}
-      </div>
-    </div>
+    <s.Container>
+      <s.TitleCategory>{category}</s.TitleCategory>
+      <s.ContainerScroll>
+        <s.Scroll>
+          {products
+            .filter((p) => p.product.category.includes(category))
+            .map((p) => (
+              <div>
+                <s.Product key={p._id} image={p.product.image} />
+              </div>
+            ))}
+        </s.Scroll>
+      </s.ContainerScroll>
+    </s.Container>
   );
 }
 BoxCategory.propTypes = {
