@@ -1,22 +1,33 @@
 import PropTypes from 'prop-types';
+import { Carousel } from 'react-responsive-carousel';
+import * as s from './style';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 
 export default function BoxHighlights({ products }) {
   const haveHighlihts = products.filter((p) => p.product.category.includes('highlight')).length > 0;
+  const showProductInHighlight = () => alert('product');
+
   return (
-    haveHighlihts ? (
-      <div>
-        <div style={{ display: 'flex' }}>
+    haveHighlihts && (
+      <s.Container>
+        <Carousel
+          autoPlay
+          infiniteLoop
+          showArrows
+          showStatus={false}
+          showThumbs={false}
+          width="20em"
+          onClickItem={showProductInHighlight}
+        >
           {products
             .filter((p) => p.product.category.includes('highlight'))
             .map((p) => (
               <div key={p._id}>
-                <img src={p.product.image} alt={p.product.name} style={{ width: '10em' }} />
+                <img src={p.product.image} alt={p.product.name} />
               </div>
             ))}
-        </div>
-      </div>
-    ) : (
-      <h1>Aoba, por enquanto não temos nada em destaque</h1>
+        </Carousel>
+      </s.Container>
     )
   );
 }

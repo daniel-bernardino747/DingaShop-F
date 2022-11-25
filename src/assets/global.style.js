@@ -55,7 +55,7 @@ const ResetCSS = createGlobalStyle`
   body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 100vw;
     height: 100vh;
     color: ${COLOR.BLACK_15};
@@ -71,6 +71,10 @@ const ResetCSS = createGlobalStyle`
 
 export const AuthContainer = styled.div`
   width: 18em;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   header {
     display: flex;
     justify-content: center;
