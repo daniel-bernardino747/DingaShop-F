@@ -11,7 +11,12 @@ export const BoxIcons = styled.div`
   align-items: flex-end;
   gap: 1em;
 `;
-export const Container = styled.header`
+export const Container = styled.div`
+  margin-top: 5em;
+  width: clamp(21em, 100vw, 70em);
+  padding: 0 2em;
+`;
+export const ContainerHeader = styled.header`
   display: flex;
   justify-content: center;
 `;

@@ -12,7 +12,7 @@ export default function Header({ children }) {
   const [filterText, setFilterText] = useState('');
   return (
     <FilterContext.Provider value={{ filterText, setFilterText }}>
-      <s.Container>
+      <s.ContainerHeader>
         <s.Header>
           <s.Box>
             <Link to="/">
@@ -29,10 +29,10 @@ export default function Header({ children }) {
             </Link>
           </s.BoxIcons>
         </s.Header>
-      </s.Container>
-      <div>
+      </s.ContainerHeader>
+      <s.Container>
         {children}
-      </div>
+      </s.Container>
     </FilterContext.Provider>
   );
 }
