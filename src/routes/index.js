@@ -13,9 +13,9 @@ import Register from '../pages/Register';
 import Auth from '../Auth';
 import Header from '../components/Header';
 import User from '../pages/User';
-import Product from '../pages/Product';
 import Cart from '../pages/Cart';
 // import Product, { loader as productLoader } from '../pages/Product';
+import Product from '../pages/Product';
 
 const routers = createBrowserRouter(
   createRoutesFromElements(
