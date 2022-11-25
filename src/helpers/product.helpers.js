@@ -16,13 +16,13 @@ export async function viewCatalog() {
   });
 }
 export async function viewProduct(id) {
-  const token = '';
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  return getProduct(id, config).then((reply) => {
+  // const token = '';
+  // const config = {
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // };
+  return getProduct(id).then((reply) => {
     if (reply.sucess) {
       return reply.product;
     }
