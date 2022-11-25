@@ -2,6 +2,7 @@ const COLOR = {
   BLACK_15: 'rgba(15, 15, 15, 1)',
   BLACK_50: 'rgba(50, 50, 50, 1)',
   BLACK_15o2: 'rgba(15, 15, 15, .2)',
+  BLACK_15o8: 'rgba(15, 15, 15, .6)',
   BLUE: 'rgba(14, 126, 189, .5)',
   GRAY_217: 'rgba(217, 217, 217, 1)',
   GRAY_217o3: 'rgba(217, 217, 217, .3)',
