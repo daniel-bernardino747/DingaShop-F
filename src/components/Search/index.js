@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import Searchbar from '../Header/style';
+import { Searchbar } from '../Header/style';
 import FilterContext from '../../contexts/filterContext';
 
 export default function Search() {
