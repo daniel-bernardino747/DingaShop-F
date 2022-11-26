@@ -1,8 +1,8 @@
-// import { useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
-import { viewCart } from '../../helpers/cart.helpers';
+import { removeProductToCart, viewCart } from '../../helpers/cart.helpers';
 import close from '../../assets/image/fa-solid_window-close.svg';
 
 export async function loader() {
@@ -11,29 +11,31 @@ export async function loader() {
 }
 
 export default function Cart() {
-  // const { cart } = useLoaderData();
+  const { cart } = useLoaderData();
+  const userCart = cart.data.cart;
+  const catalog = cart.data.catalog;
+  console.log(catalog);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <>
-      <div>
+      <Upper>
         <h1>Cart</h1>
         <button type="button" onClick={() => setModalIsOpen(true)}>Buy all</button>
-      </div>
+      </Upper>
       <div>
-        <div>
-          <div>
-            <img src="" alt="" />
-            <h1>Fazedor de criança dormir</h1>
-          </div>
-          <div>X</div>
-        </div>
-        <div>
-          <div>
-            <img src="" alt="" />
-            <h1>Fazedor de criança dormir</h1>
-          </div>
-          <div>X</div>
-        </div>
+        {userCart.map((c) => (
+          catalog.map((p) => (c.idProduct === p._id
+            ? (
+              <ContainerProduct>
+                <Info>
+                  <img src={p.product.image} alt="" />
+                  <h1>{p.product.name}</h1>
+                </Info>
+                <div onClick={() => removeProductToCart(p.product.name, c._id)}>X</div>
+              </ContainerProduct>
+            )
+            : <></>))))}
+
       </div>
       <ReactModal
         isOpen={modalIsOpen}
@@ -80,6 +82,63 @@ export default function Cart() {
   );
 }
 
+const ContainerProduct = styled.div`
+display:flex;
+width: 953px;
+height: 118px;
+left: 243px;
+top: 364px;
+justify-content: space-between;
+align-items: center;
+background: #D9D9D9;
+border-radius: 10px;
+`;
+
+const Upper = styled.div`
+display: flex;
+justify-content: space-between;
+margin-top: 150px;
+margin-bottom: 30px;
+h1{
+  font-family: 'Ubuntu';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 37px;
+/* identical to box height */
+
+
+color: #000000;
+}
+button{
+  width: 223px;
+height: 48px;
+background: #A6A6A6;
+border-radius: 36px;
+}
+`;
+
+const Info = styled.div`
+display: flex;
+justify-content: flex-start;
+h1{
+  font-family: 'Ubuntu';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 37px;
+/* identical to box height */
+
+
+color: #000000;
+}
+img{
+  width: 80px;
+height: 80px;
+border-radius: 10px;
+
+}
+`;
 const ModalContainer = styled.div`
 display:flex;
 flex-direction: column;
