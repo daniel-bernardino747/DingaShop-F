@@ -1,4 +1,4 @@
-// import { useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { viewProduct } from '../../helpers/product.helpers';
 import * as s from './style';
 
@@ -7,7 +7,8 @@ export async function loader({ params }) {
 }
 
 export default function Product() {
-  // const product = useLoaderData();
+  const [product] = useLoaderData();
+  console.log(product);
   return (
     <s.Container>
       {true ? (

@@ -14,8 +14,7 @@ import Auth from '../Auth';
 import Header from '../components/Header';
 import User from '../pages/User';
 import Cart, { loader as cartLoader } from '../pages/Cart';
-// import Product, { loader as productLoader } from '../pages/Product';
-import Product from '../pages/Product';
+import Product, { loader as productLoader } from '../pages/Product';
 
 const routers = createBrowserRouter(
   createRoutesFromElements(
@@ -29,7 +28,7 @@ const routers = createBrowserRouter(
       <Route
         path="product/:id"
         element={<Header><Product /></Header>}
-        // loader={productLoader}
+        loader={productLoader}
         errorElement={<Error />}
       />
       <Route
