@@ -13,7 +13,7 @@ import Register from '../pages/Register';
 import Auth from '../Auth';
 import Header from '../components/Header';
 import User from '../pages/User';
-import Cart from '../pages/Cart';
+import Cart, { loader as cartLoader } from '../pages/Cart';
 // import Product, { loader as productLoader } from '../pages/Product';
 import Product from '../pages/Product';
 
@@ -35,7 +35,7 @@ const routers = createBrowserRouter(
       <Route
         path="cart"
         element={<Header><Cart /></Header>}
-        // loader={productLoader}
+        loader={cartLoader}
         errorElement={<Error />}
       />
       <Route
