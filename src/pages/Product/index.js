@@ -1,6 +1,7 @@
 import { useLoaderData } from 'react-router-dom';
 import { addProductToCart } from '../../helpers/cart.helpers';
 import { viewProduct } from '../../helpers/product.helpers';
+import formatInReal from '../../Utils/format.util';
 import * as s from './style';
 
 export async function loader({ params }) {
@@ -28,7 +29,7 @@ export default function Product() {
             )}
           </div>
           <div>
-            <s.Title>{product.cost}</s.Title>
+            <s.Title>{formatInReal(product.cost)}</s.Title>
             <s.BoxButtons>
               <s.Button onClick={() => addProductToCart(_id)}>Add to cart</s.Button>
               <s.ButtonBuy onClick={() => alert('quero comprar')}>Buy now</s.ButtonBuy>
