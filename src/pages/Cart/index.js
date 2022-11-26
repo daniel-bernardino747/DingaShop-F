@@ -14,10 +14,9 @@ export default function Cart() {
   const { cart } = useLoaderData();
   const userCart = cart.data.cart;
   const catalog = cart.data.catalog;
-  console.log(catalog);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
-    <>
+    <ContainerPage>
       <Upper>
         <h1>Cart</h1>
         <button type="button" onClick={() => setModalIsOpen(true)}>Buy all</button>
@@ -78,10 +77,15 @@ export default function Cart() {
           </form>
         </ModalContainer>
       </ReactModal>
-    </>
+    </ContainerPage>
   );
 }
-
+const ContainerPage = styled.div`
+width: 953px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+`;
 const ContainerProduct = styled.div`
 display:flex;
 width: 953px;
@@ -92,12 +96,14 @@ justify-content: space-between;
 align-items: center;
 background: #D9D9D9;
 border-radius: 10px;
+padding-left: 19px;
+padding-right: 27px;
 `;
 
 const Upper = styled.div`
 display: flex;
 justify-content: space-between;
-margin-top: 150px;
+margin-top: 90px;
 margin-bottom: 30px;
 h1{
   font-family: 'Ubuntu';
@@ -121,6 +127,7 @@ border-radius: 36px;
 const Info = styled.div`
 display: flex;
 justify-content: flex-start;
+align-items: center;
 h1{
   font-family: 'Ubuntu';
 font-style: normal;
@@ -136,6 +143,7 @@ img{
   width: 80px;
 height: 80px;
 border-radius: 10px;
+margin-right: 35px;
 
 }
 `;
