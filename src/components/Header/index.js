@@ -10,6 +10,11 @@ import * as s from './style';
 
 export default function Header({ children }) {
   const [filterText, setFilterText] = useState('');
+
+  const userActive = !!window.localStorage.getItem('dinga.token')
+  && !!window.localStorage.getItem('dinga.user');
+  const user = userActive ? JSON.parse(window.localStorage.getItem('dinga.user')) : '';
+
   return (
     <FilterContext.Provider value={{ filterText, setFilterText }}>
       <s.ContainerHeader>
@@ -24,8 +29,12 @@ export default function Header({ children }) {
             <Link to="/cart">
               <HiShoppingCart style={s.IconCSS} />
             </Link>
-            <Link to="/user">
-              <BsFillPersonFill style={s.IconCSS} />
+            <Link to={userActive ? '/user' : '/app/login'}>
+              {(userActive && user.image) ? (
+                <s.Icon src={user.image} alt={user.name} />
+              ) : (
+                <BsFillPersonFill style={s.IconCSS} />
+              )}
             </Link>
           </s.BoxIcons>
         </s.Header>

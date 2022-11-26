@@ -3,16 +3,16 @@ import { postSession, postUser, renewSession } from '../services/auth.services';
 
 export async function loginHelper(body) {
   const existingToken = window.localStorage.getItem('dinga.token');
-
-  if (existingToken) {
+  if (existingToken && existingToken !== 'undefined') {
     const config = {
       headers: {
-        Authorization: `Bearer ${existingToken}`,
+        Authorization: `Bearer ${JSON.parse(existingToken)}`,
       },
     };
     return renewSession(config).then((reply) => {
       if (reply.sucess) {
-        window.localStorage.setItem('dinga.token', reply.token);
+        window.localStorage.setItem('dinga.token', JSON.stringify(reply.data.token));
+        window.localStorage.setItem('dinga.user', JSON.stringify(reply.data.user));
         return reply.sucess;
       }
       console.log(reply.error.response.data);
@@ -28,7 +28,8 @@ export async function loginHelper(body) {
   return postSession(body)
     .then((reply) => {
       if (reply.sucess) {
-        window.localStorage.setItem('dinga.token', reply.token);
+        window.localStorage.setItem('dinga.token', JSON.stringify(reply.data.token));
+        window.localStorage.setItem('dinga.user', JSON.stringify(reply.data.user));
         return reply.sucess;
       }
       console.log(reply.error.response.data);
