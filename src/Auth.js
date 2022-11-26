@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
+import { AuthContainer } from './assets/global.style';
+import lightLogo from './assets/image/logo-lightbg.svg';
 
 export default function Auth({ children }) {
   return (
-    <>
+    <AuthContainer>
       <header>
-        Oii, sou o header do auth
+        <img src={lightLogo} alt="logo" />
       </header>
-      <div>
-        {children}
-      </div>
-    </>
+      {children}
+    </AuthContainer>
   );
 }
 Auth.propTypes = {

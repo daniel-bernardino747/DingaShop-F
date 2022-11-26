@@ -1,5 +1,10 @@
-// import { useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
+import BoxCategory from '../../components/BoxCategory';
+import BoxHighlights from '../../components/BoxHighlights';
+import categoriesOfCatalog from '../../helpers/functions.helpers';
+// import { useContext } from 'react';
 import { viewCatalog } from '../../helpers/product.helpers';
+// import FilterContext from '../../contexts/filterContext';
 
 export async function loader() {
   const catalog = await viewCatalog();
@@ -7,44 +12,27 @@ export async function loader() {
 }
 
 export default function Home() {
-  // const { catalog } = useLoaderData();
+  // const { filterText } = useContext(FilterContext);
+  const { catalog } = useLoaderData();
+  const listOfCategories = categoriesOfCatalog(catalog);
+
+  // if (!prod.product.name.includes(filterText)) {
+  //   return (
+  //     <h1>Nada foi encontrado</h1>
+  //   );
+  // }
+
   return (
     <>
+      <BoxHighlights products={catalog} />
       <div>
-        <button type="button"> seta- </button>
-        <div>
-          highlights
-          <img src="" alt="" />
-          <img src="" alt="" />
-          <img src="" alt="" />
-        </div>
-        <button type="button"> seta+ </button>
-      </div>
-      <div>
-        <h1>Cosmetics (category)</h1>
-        <div>
-          <div>
-            product
-            <img src="" alt="" />
-          </div>
-          <div>
-            product
-            <img src="" alt="" />
-          </div>
-        </div>
-      </div>
-      <div>
-        <h1>Tools (category)</h1>
-        <div>
-          <div>
-            product
-            <img src="" alt="" />
-          </div>
-          <div>
-            product
-            <img src="" alt="" />
-          </div>
-        </div>
+        {listOfCategories.map((category) => (
+          <BoxCategory
+            key={category}
+            category={category}
+            products={catalog}
+          />
+        ))}
       </div>
     </>
   );
