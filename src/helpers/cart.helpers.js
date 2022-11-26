@@ -2,10 +2,10 @@ import Swal from 'sweetalert2';
 import { deleteProductToCart, getCart, putProductToCart } from '../services/cart.services';
 
 export async function viewCart() {
-  const token = '';
+  const token = window.localStorage.getItem('dinga.token');
   const config = {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${JSON.parse(token)}`,
     },
   };
   return getCart(config)
@@ -24,10 +24,10 @@ export async function viewCart() {
 }
 
 export async function addProductToCart(idProduct) {
-  const token = '';
+  const token = window.localStorage.getItem('dinga.token');
   const config = {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${JSON.parse(token)}`,
     },
   };
   return putProductToCart(idProduct, config)
