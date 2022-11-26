@@ -1,5 +1,7 @@
-// import { useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
+import { addProductToCart } from '../../helpers/cart.helpers';
 import { viewProduct } from '../../helpers/product.helpers';
+import formatInReal from '../../Utils/format.util';
 import * as s from './style';
 
 export async function loader({ params }) {
@@ -7,43 +9,45 @@ export async function loader({ params }) {
 }
 
 export default function Product() {
-  // const product = useLoaderData();
+  const [{ _id, product }] = useLoaderData();
   return (
     <s.Container>
-      {true ? (
-        <>
-          <s.Box>
-            <s.ImageProduct src="" alt="" />
-            <s.BoxInfos>
-              <div>
-                <s.Title>Controle de Carrinho</s.Title>
-                <s.Subtitle>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</s.Subtitle>
-                <s.RatingStars>
-                  <p>⭐⭐⭐⭐⭐</p>
-                  {' '}
-                  <span>154 ratings</span>
-                </s.RatingStars>
-              </div>
-              <div>
-                <s.Title>R$45,40</s.Title>
-                <s.BoxButtons>
-                  <s.Button>Add to cart</s.Button>
-                  <s.ButtonBuy>Buy now</s.ButtonBuy>
-                </s.BoxButtons>
-              </div>
-            </s.BoxInfos>
-          </s.Box>
-          <s.BoxDetails>
-            <s.Title>Description</s.Title>
-            <s.Text>bla bla bla bla bla</s.Text>
-          </s.BoxDetails>
-          <s.BoxDetails>
-            <s.Title>Details</s.Title>
-            <s.Text>Ble ble ble ble ble</s.Text>
-          </s.BoxDetails>
-        </>
-      ) : (
-        <h1>Produto não encontrado</h1>
+      <s.Box>
+        <s.ImageProduct src={product.image} alt={product.name} />
+        <s.BoxInfos>
+          <div>
+            <s.Title>{product.name}</s.Title>
+            {product.subtitle && (
+            <s.Subtitle>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</s.Subtitle>
+            )}
+            {product.review && (
+            <s.RatingStars>
+              <p>⭐⭐⭐⭐⭐</p>
+              {' '}
+              <span>154 ratings</span>
+            </s.RatingStars>
+            )}
+          </div>
+          <div>
+            <s.Title>{formatInReal(product.cost)}</s.Title>
+            <s.BoxButtons>
+              <s.Button onClick={() => addProductToCart(_id)}>Add to cart</s.Button>
+              <s.ButtonBuy onClick={() => alert('quero comprar')}>Buy now</s.ButtonBuy>
+            </s.BoxButtons>
+          </div>
+        </s.BoxInfos>
+      </s.Box>
+      {product.description && (
+      <s.BoxDetails>
+        <s.Title>Description</s.Title>
+        <s.Text>{product.description}</s.Text>
+      </s.BoxDetails>
+      )}
+      {product.details && (
+      <s.BoxDetails>
+        <s.Title>Details</s.Title>
+        <s.Text>{product.details}</s.Text>
+      </s.BoxDetails>
       )}
     </s.Container>
   );

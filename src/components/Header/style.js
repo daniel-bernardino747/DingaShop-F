@@ -31,6 +31,11 @@ export const Header = styled.div`
   justify-content: space-between;
   padding: 0 1em;
 `;
+export const Icon = styled.img`
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 0.5em;
+`;
 export const IconCSS = {
   width: '2.5em',
   height: '2.5em',

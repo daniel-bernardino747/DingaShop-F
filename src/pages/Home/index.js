@@ -1,9 +1,9 @@
 import { useLoaderData } from 'react-router-dom';
 import BoxCategory from '../../components/BoxCategory';
 import BoxHighlights from '../../components/BoxHighlights';
-import categoriesOfCatalog from '../../helpers/functions.helpers';
 // import { useContext } from 'react';
 import { viewCatalog } from '../../helpers/product.helpers';
+import categoriesOfCatalog from '../../Utils/filter.util';
 // import FilterContext from '../../contexts/filterContext';
 
 export async function loader() {

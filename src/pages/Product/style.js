@@ -36,7 +36,7 @@ export const Container = styled.section`
 `;
 export const ImageProduct = styled.img`
   width: 50%;
-  height: 20em;
+  height: auto;
   border-radius: .5em;
 `;
 export const Text = styled.p`
