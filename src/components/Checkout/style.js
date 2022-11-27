@@ -66,6 +66,7 @@ export const LabelText = styled.p`
   margin: .8em 0 .4em 0;
 `;
 export const Overlay = styled.div`
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;
