@@ -17,3 +17,9 @@ export async function renewSession(config) {
     .then((answer) => ({ data: answer.data, sucess: true }))
     .catch((error) => ({ error, sucess: false }));
 }
+
+export async function getUserPerfil(config) {
+  return axios.get(`http://${process.env.REACT_APP_API}/user`, config)
+    .then((user) => ({ data: user.data, sucess: true }))
+    .catch((error) => ({ error, sucess: false }));
+}

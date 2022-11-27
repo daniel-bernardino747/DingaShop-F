@@ -1,88 +1,128 @@
 import styled from 'styled-components';
+import COLOR from '../../constants/colors.constants';
 
-export const ModalContainer = styled.div`
-display:flex;
-flex-direction: column;
-width: 650px;
-height: 600px;
-margin-left:320px;
-background: #D9D9D9;
-border-radius: 10px;
-padding-left: 50px;
-form{
+export const BoxProducts = styled.div`
+  width: 80%;
+  height: max(auto, 20em);
+  overflow: scroll;
+  overflow-x: hidden;
+  &&::-webkit-scrollbar {
+    display: none;
+  }
+`;
+export const ButtonExit = styled.button`
+  position: absolute;
+  top: .5em;
+  right: .5em;
+  border: none;
+  background: none;
+  cursor: pointer;
+`;
+export const ButtonSubmit = styled.button.attrs({ type: 'submit' })`
+  width: 100%;
+  height: 2.5em;
+  margin-top: 2em;
+  border-radius: .3em;
+  background-color: ${COLOR.GRAY_190};
+  transition: background-color .3s;
+  &&:hover {
+   background-color: ${COLOR.BLACK_15o2}; 
+  }
+`;
+export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-  position:absolute;
-  bottom: 70px;
-}
-h1{
-font-family: 'Ubuntu';
-font-style: normal;
-font-weight: 700;
-font-size: 28px;
-line-height: 37px;
-color: #000000;
-text-align: center;
-padding-top: 40px;
-}
-h2{
-  font-family: 'Ubuntu';
-font-style: normal;
-font-weight: 500;
-font-size: 20px;
-line-height: 30px;
-color: #000000;
-}
-button{
- text-align: center;
-width: 272px;
-height: 58.59px;
-background: #A6A6A6;
-border-radius: 43.9103px;
-font-family: 'Ubuntu';
-font-style: normal;
-font-weight: 400;
-font-size: 15px;
-line-height: 22px;
-outline: none;
-border: none;
-color: #000000;
-margin-left: 140px;
-margin-top:50px;
-}
-input{
-  width: 550px;
-height: 40px;
-background: #F9F7F7;
-outline: none;
-border: none;
-}
-
+  width: min(90%, 50em);
+  height: 42em;
+  align-items: center;
+  background-color: ${COLOR.GRAY_217};
+  border-radius: .5em;
+  padding: .5em;
 `;
-export const ImageClose = styled.img`
-width: 28px;
-height: 28px;
-display: flex;
-position: absolute;
-right: 55px;
+export const Form = styled.form`
+  width: 21em;
 `;
-export const Each = styled.div`
-display: flex;
-align-items: center;
+export const Input = styled.input`
+  width: 100%;
+  height: 2.5em;
+  border: none;
+  border-radius: .3em;
+  outline: .1em solid ${(props) => (props.error ? COLOR.RED : COLOR.GRAY_190)};
+  transition: box-shadow .3s;
+  padding: .5em;
+  &&:focus, &&:hover {
+    box-shadow: 0 0 0.7em ${COLOR.BLACK_15o2}; 
+  }
 `;
-export const ProductModal = styled.div`
-height: 150px;
-overflow: scroll;
-img{
-  width: 60px;
-height: 60px;
-border-radius: 10px;
-}
-h1{
-  font-family: 'Ubuntu';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-color: #000000;
-}
+export const Label = styled.label`
+  width: 30em;
+  height: 10em;
+  background-color: green;
+`;
+export const LabelText = styled.p`
+  font-size: 1.5em;
+  font-weight: 500;
+  margin: .8em 0 .4em 0;
+`;
+export const Overlay = styled.div`
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+  justify-content: center;
+  align-items: center;
+`;
+export const Product = styled.div`
+  display: flex;
+  margin: 1em .5em;
+  justify-content: space-between;
+  align-items: center;
+  div {
+    gap: .5em;
+    display: flex;
+    align-items: center;
+  }
+  img {
+    height: 3.5em;
+    width: 3em;
+    border-radius: .3em;
+  }
+`;
+export const Select = styled.select`
+  width: 100%;
+  height: 2.5em;
+  border: none;
+  border-radius: .3em;
+  padding: .5em;
+  outline: .1em solid ${(props) => (props.error ? COLOR.RED : COLOR.GRAY_190)};
+  transition: box-shadow .3s;
+  &&:focus, &&:hover {
+    box-shadow: 0 0 0.7em ${COLOR.BLACK_15o2}; 
+  }
+`;
+export const Title = styled.h1`
+  text-align: center;
+  font-size: 2em;
+  font-weight: 500;
+  margin-top: .6em;
+`;
+export const TotalCost = styled.div`
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  background: ${COLOR.GRAY_217};
+  h1 {
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+  p {
+    font-size: 1.2em;
+  }
 `;

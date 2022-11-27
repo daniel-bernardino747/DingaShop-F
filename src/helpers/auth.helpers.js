@@ -1,5 +1,7 @@
 import Swal from 'sweetalert2';
-import { postSession, postUser, renewSession } from '../services/auth.services';
+import {
+  getUserPerfil, postSession, postUser, renewSession,
+} from '../services/auth.services';
 
 export async function loginHelper(body) {
   const existingToken = window.localStorage.getItem('dinga.token');
@@ -59,6 +61,28 @@ export async function registerHelper(data) {
           footer: `Server error: ${reply.error.response.data.error}`,
         });
       }
+      return reply.sucess;
+    });
+}
+export async function viewUserPerfil() {
+  const token = window.localStorage.getItem('dinga.token');
+  const config = {
+    headers: {
+      Authorization: `Bearer ${JSON.parse(token)}`,
+    },
+  };
+  return getUserPerfil(config)
+    .then((reply) => {
+      if (reply.sucess) {
+        return reply.data;
+      }
+      console.log(reply.error.response.data);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'We were unable to view your perfil user.',
+        footer: `Server error: ${reply.error.response.data.error}`,
+      });
       return reply.sucess;
     });
 }
