@@ -1,8 +1,9 @@
 import { useLoaderData } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext } from 'react';
 import * as s from './style';
 import { removeProductToCart, viewCart } from '../../helpers/cart.helpers';
 import Checkout from '../../components/Checkout';
+import { CheckoutContext } from '../../contexts/checkout.context';
 
 export async function loader() {
   const cart = await viewCart();
@@ -11,20 +12,16 @@ export async function loader() {
 
 export default function Cart() {
   const { cart } = useLoaderData();
+  const { setCheckoutOpen } = useContext(CheckoutContext);
   console.log('cart', cart.data);
   const userCart = cart.data;
-  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
     <s.ContainerPage>
-      <Checkout
-        modalIsOpen={modalIsOpen}
-        userCart={userCart}
-        setModalIsOpen={setModalIsOpen}
-      />
+      <Checkout cart={userCart} />
       <s.Upper>
         <h1>Cart</h1>
-        <button type="button" onClick={() => setModalIsOpen(true)}>Buy all</button>
+        <button type="button" onClick={() => setCheckoutOpen(true)}>Buy all</button>
       </s.Upper>
       <div>
         {userCart.map((p) => (

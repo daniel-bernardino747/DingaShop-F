@@ -1,39 +1,45 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import close from '../../assets/image/fa-solid_window-close.svg';
+
+import { CheckoutContext } from '../../contexts/checkout.context';
 import finalizeCheckout from '../../helpers/checkout.helpers';
 import { sumOfCost } from '../../Utils/filter.util';
 import formatInReal, { handleKeyUp } from '../../Utils/format.util';
+
+import close from '../../assets/image/fa-solid_window-close.svg';
 import * as s from './style';
 
-export default function Checkout(props) {
-  const {
-    modalIsOpen, userCart, setModalIsOpen,
-  } = props;
+export default function Checkout({ cart }) {
+  const { checkoutOpen, setCheckoutOpen } = useContext(CheckoutContext);
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm();
-  const sum = sumOfCost(userCart);
+  const sum = sumOfCost(cart);
 
   const onSubmit = (data) => {
-    const body = { ...data, value: sum, products: userCart };
-    finalizeCheckout(body);
+    const body = { ...data, value: sum, products: cart.product };
+    finalizeCheckout(body).then((sucess) => {
+      if (sucess) {
+        setCheckoutOpen(false);
+      }
+    });
   };
 
   return (
-    <s.Overlay>
-      <s.Container isOpen={modalIsOpen}>
-        <s.ButtonExit onClick={() => setModalIsOpen(false)}>
+    <s.Overlay isOpen={checkoutOpen}>
+      <s.Container>
+        <s.ButtonExit onClick={() => setCheckoutOpen(false)}>
           <img src={close} alt="Close" />
         </s.ButtonExit>
         <s.Title>
           Finalizar compra
         </s.Title>
         <s.BoxProducts>
-          {userCart.map((c) => (
-            <s.Product>
+          {cart.map((c, i) => (
+            <s.Product key={(c._id + i)}>
               <div>
                 <img src={c.product.image} alt="" />
                 <p>{c.product.name}</p>
@@ -105,10 +111,9 @@ export default function Checkout(props) {
     </s.Overlay>
   );
 }
-
 Checkout.propTypes = {
   modalIsOpen: PropTypes.bool,
   catalog: PropTypes.object,
-  userCart: PropTypes.object,
+  cart: PropTypes.object,
   setModalIsOpen: PropTypes.bool,
 };
