@@ -13,3 +13,12 @@ export default function categoriesOfCatalog(data) {
   });
   return categories;
 }
+
+export function sumOfCost(list) {
+  let sum = 0;
+  list.forEach((item) => {
+    sum += item.product.cost;
+  });
+
+  return sum;
+}

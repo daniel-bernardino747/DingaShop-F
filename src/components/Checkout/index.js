@@ -1,86 +1,108 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-import ReactModal from 'react-modal';
+import { useForm } from 'react-hook-form';
 import close from '../../assets/image/fa-solid_window-close.svg';
+import finalizeCheckout from '../../helpers/checkout.helpers';
+import { sumOfCost } from '../../Utils/filter.util';
+import formatInReal, { handleKeyUp } from '../../Utils/format.util';
 import * as s from './style';
 
-export default function Checkout({
-  modalIsOpen, catalog, userCart, setModalIsOpen,
-}) {
-  const [form, setForm] = useState({ name: '', cpf: '', securityNumber: '' });
-  function handleChange(e) {
-    e.preventDefault();
-    setForm({ ...form, [e.target.name]: e.target.value });
-    console.log(form);
-  }
+export default function Checkout(props) {
+  const {
+    modalIsOpen, userCart, setModalIsOpen,
+  } = props;
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, errors },
+  } = useForm();
+  const sum = sumOfCost(userCart);
+
+  const onSubmit = (data) => {
+    const body = { ...data, value: sum, products: userCart };
+    finalizeCheckout(body);
+  };
 
   return (
-    <ReactModal
-      isOpen={modalIsOpen}
-      ariaHideApp={false}
-      style={
-                    {
-                      overlay: {
-                        background: '',
-
-                      },
-                      content: {
-                        display: 'flex',
-                        flexDirection: 'column',
-                        width: '100%',
-                        height: '100%',
-                        backgroundColor: 'rgba(0, 0, 0, 0.4)',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        border: '',
-                        position: 'relative',
-                      },
-                    }
-}
-    >
-      <s.ImageClose src={close} onClick={() => setModalIsOpen(false)} alt="Close" />
-      <s.ModalContainer>
-        <h1>
+    <s.Overlay>
+      <s.Container isOpen={modalIsOpen}>
+        <s.ButtonExit onClick={() => setModalIsOpen(false)}>
+          <img src={close} alt="Close" />
+        </s.ButtonExit>
+        <s.Title>
           Finalizar compra
-        </h1>
-        <s.ProductModal>
-          { userCart.map((c) => (
-            catalog.map((p) => (c.idProduct === p._id
-              ? (
-                <s.Each>
-                  <img src={p.product.image} alt="" />
-                  <h1>{p.product.name}</h1>
-                </s.Each>
-              )
+        </s.Title>
+        <s.BoxProducts>
+          {userCart.map((c) => (
+            <s.Product>
+              <div>
+                <img src={c.product.image} alt="" />
+                <p>{c.product.name}</p>
+              </div>
+              <p>{formatInReal(c.product.cost)}</p>
+            </s.Product>
+          ))}
+        </s.BoxProducts>
+        <s.TotalCost>
+          <h1>Total</h1>
+          <p>{formatInReal(sum)}</p>
+        </s.TotalCost>
+        <s.Form onSubmit={(handleSubmit(onSubmit))}>
+          <s.Label>
+            <s.LabelText>Payment:</s.LabelText>
+            <s.Select
+              defaultValue="0"
+              error={errors?.payment}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...register('payment', { validate: (value) => value !== '0' })}
+            >
+              <option value="0">Select your type of payment...</option>
+              <option value="credit-card">Credit Card</option>
+              <option value="debit-card">Debit Card</option>
+              <option value="bank-slip">Bank Slip</option>
+            </s.Select>
 
-              : <></>))))}
+            {errors?.payment?.type === 'validate' && (
+              <p className="error-message">Payment is required.</p>
+            )}
+          </s.Label>
+          <s.Label>
+            <s.LabelText>CPF:</s.LabelText>
 
-        </s.ProductModal>
-        <form>
-          <h2>Nome</h2>
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-          />
-          <h2>CPF</h2>
-          <input
-            name="cpf"
-            value={form.cpf}
-            onChange={handleChange}
-          />
-          <h2>Security number</h2>
-          <input
-            name="securityNumber"
-            value={form.securityNumber}
-            onChange={handleChange}
-          />
-          <button type="submit">Comprar</button>
-        </form>
-      </s.ModalContainer>
-    </ReactModal>
+            <s.Input
+              id="i-cpf"
+              type="text"
+              onKeyUp={handleKeyUp}
+              error={errors?.cpf}
+              disabled={isSubmitting}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...register('cpf', { required: true, minLength: '14' })}
+            />
+            {errors?.cpf?.type === 'required' && (
+              <p>CPF is required.</p>
+            )}
+            {errors?.cpf?.type === 'minLength' && (
+              <p>CPF is required.</p>
+            )}
+          </s.Label>
+          <s.Label>
+            <s.LabelText>Security Number:</s.LabelText>
+
+            <s.Input
+              id="i-securityNumber"
+              type="text"
+              error={errors?.securityNumber}
+              disabled={isSubmitting}
+                  // eslint-disable-next-line react/jsx-props-no-spreading
+              {...register('securityNumber', { required: true })}
+            />
+            {errors?.securityNumber?.type === 'required' && (
+              <p>securityNumber is required.</p>
+            )}
+          </s.Label>
+          <s.ButtonSubmit>Comprar</s.ButtonSubmit>
+        </s.Form>
+      </s.Container>
+    </s.Overlay>
   );
 }
 
