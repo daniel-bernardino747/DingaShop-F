@@ -1,6 +1,8 @@
 import { useLoaderData } from 'react-router-dom';
+import styled from 'styled-components';
 import BoxCategory from '../../components/BoxCategory';
 import BoxHighlights from '../../components/BoxHighlights';
+import Footer from '../../components/Footer';
 // import { useContext } from 'react';
 import { viewCatalog } from '../../helpers/product.helpers';
 import categoriesOfCatalog from '../../Utils/filter.util';
@@ -34,6 +36,7 @@ export default function Home() {
           />
         ))}
       </div>
+      <Footer />
     </>
   );
 }

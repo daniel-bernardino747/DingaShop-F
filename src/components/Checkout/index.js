@@ -20,7 +20,7 @@ export default function Checkout({ cart }) {
   const sum = sumOfCost(cart);
 
   const onSubmit = (data) => {
-    const body = { ...data, value: sum, products: cart.product };
+    const body = { ...data, value: sum, products: cart };
     finalizeCheckout(body).then((sucess) => {
       if (sucess) {
         setCheckoutOpen(false);
