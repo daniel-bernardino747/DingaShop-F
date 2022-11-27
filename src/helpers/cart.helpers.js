@@ -51,7 +51,7 @@ export async function addProductToCart(idProduct) {
 }
 
 export async function removeProductToCart(name, idCart) {
-  const confirm = Swal.fire({
+  const confirm = await Swal.fire({
     title: 'Are you sure?',
     text: "You won't be able to revert this!",
     icon: 'warning',
@@ -67,10 +67,10 @@ export async function removeProductToCart(name, idCart) {
   });
   if (!confirm) return false;
 
-  const token = '';
+  const token = window.localStorage.getItem('dinga.token');
   const config = {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${JSON.parse(token)}`,
     },
   };
   return deleteProductToCart(idCart, config)
