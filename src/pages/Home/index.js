@@ -1,12 +1,9 @@
 import { useLoaderData } from 'react-router-dom';
-import styled from 'styled-components';
 import BoxCategory from '../../components/BoxCategory';
 import BoxHighlights from '../../components/BoxHighlights';
 import Footer from '../../components/Footer';
-// import { useContext } from 'react';
 import { viewCatalog } from '../../helpers/product.helpers';
 import categoriesOfCatalog from '../../Utils/filter.util';
-// import FilterContext from '../../contexts/filterContext';
 
 export async function loader() {
   const catalog = await viewCatalog();
@@ -14,15 +11,8 @@ export async function loader() {
 }
 
 export default function Home() {
-  // const { filterText } = useContext(FilterContext);
   const { catalog } = useLoaderData();
   const listOfCategories = categoriesOfCatalog(catalog);
-
-  // if (!prod.product.name.includes(filterText)) {
-  //   return (
-  //     <h1>Nada foi encontrado</h1>
-  //   );
-  // }
 
   return (
     <>

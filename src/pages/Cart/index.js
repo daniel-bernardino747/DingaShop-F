@@ -6,6 +6,7 @@ import Checkout from '../../components/Checkout';
 import { CheckoutContext } from '../../contexts/checkout.context';
 import formatInReal from '../../Utils/format.util';
 import Footer from '../../components/Footer';
+import { sumOfCost } from '../../Utils/filter.util';
 
 export async function loader() {
   const cart = await viewCart();
@@ -23,7 +24,14 @@ export default function Cart() {
       <s.ContainerPage>
         <Checkout cart={userCart} />
         <s.Upper>
-          <h1>Cart</h1>
+          <s.Title>
+            <h1>Cart</h1>
+            <h2>
+              Total:
+              {' '}
+              {formatInReal(sumOfCost(userCart))}
+            </h2>
+          </s.Title>
           <button type="button" onClick={() => setCheckoutOpen(true)}>Buy all</button>
         </s.Upper>
         <div>

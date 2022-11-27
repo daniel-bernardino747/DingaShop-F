@@ -46,6 +46,13 @@ cursor: pointer;
 }
 `;
 
+export const Title = styled.div`
+display: flex;
+flex-direction: column;
+h2{
+  font-style: italic;
+}
+`;
 export const Info = styled.div`
 display: flex;
 justify-content: flex-start;

@@ -15,6 +15,7 @@ import Header from '../components/Header';
 import User, { loader as userLoader } from '../pages/User';
 import Cart, { loader as cartLoader } from '../pages/Cart';
 import Product, { loader as productLoader } from '../pages/Product';
+import Search from '../pages/Search';
 
 const routers = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,12 @@ const routers = createBrowserRouter(
       <Route
         index
         element={<Header><Home /></Header>}
+        loader={catalogLoader}
+        errorElement={<Error />}
+      />
+      <Route
+        path="/search/:name"
+        element={<Header><Search /></Header>}
         loader={catalogLoader}
         errorElement={<Error />}
       />
