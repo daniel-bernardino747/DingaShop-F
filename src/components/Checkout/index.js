@@ -8,7 +8,7 @@ import * as s from './style';
 
 export default function Checkout(props) {
   const {
-    modalIsOpen, userCart, setModalIsOpen,
+    modalIsOpen, cart, setModalIsOpen,
   } = props;
   const {
     register,
@@ -86,7 +86,6 @@ export default function Checkout(props) {
           </s.Label>
           <s.Label>
             <s.LabelText>Security Number:</s.LabelText>
-
             <s.Input
               id="i-securityNumber"
               type="text"
@@ -108,7 +107,6 @@ export default function Checkout(props) {
 
 Checkout.propTypes = {
   modalIsOpen: PropTypes.bool,
-  catalog: PropTypes.object,
-  userCart: PropTypes.object,
+  cart: PropTypes.object,
   setModalIsOpen: PropTypes.bool,
 };
