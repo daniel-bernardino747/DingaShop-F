@@ -5,7 +5,7 @@ import close from '../../assets/image/fa-solid_window-close.svg';
 import * as s from './style';
 
 export default function Checkout({
-  modalIsOpen, catalog, userCart, setModalIsOpen,
+  modalIsOpen, cart, setModalIsOpen,
 }) {
   const [form, setForm] = useState({ name: '', cpf: '', securityNumber: '' });
   function handleChange(e) {
@@ -13,6 +13,7 @@ export default function Checkout({
     setForm({ ...form, [e.target.name]: e.target.value });
     console.log(form);
   }
+  console.log(cart);
 
   return (
     <ReactModal
@@ -46,16 +47,15 @@ export default function Checkout({
           Finalizar compra
         </h1>
         <s.ProductModal>
-          { userCart.map((c) => (
-            catalog.map((p) => (c.idProduct === p._id
-              ? (
-                <s.Each>
-                  <img src={p.product.image} alt="" />
-                  <h1>{p.product.name}</h1>
-                </s.Each>
-              )
+          { cart.map((c) => (
+            cart ? (
+              <s.Each>
+                <img src={c.product.image} alt="" />
+                <h1>{c.product.name}</h1>
+              </s.Each>
+            )
 
-              : <></>))))}
+              : <></>))}
 
         </s.ProductModal>
         <form>
@@ -86,7 +86,6 @@ export default function Checkout({
 
 Checkout.propTypes = {
   modalIsOpen: PropTypes.bool,
-  catalog: PropTypes.object,
-  userCart: PropTypes.object,
+  cart: PropTypes.object,
   setModalIsOpen: PropTypes.bool,
 };

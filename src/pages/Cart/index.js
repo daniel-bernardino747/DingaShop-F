@@ -1,11 +1,9 @@
 import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
-import ReactModal from 'react-modal';
-import axios from 'axios';
 import * as s from './style';
 import { removeProductToCart, viewCart } from '../../helpers/cart.helpers';
-import close from '../../assets/image/fa-solid_window-close.svg';
 import Checkout from '../../components/Checkout';
+import formatInReal from '../../Utils/format.util';
 
 export async function loader() {
   const cart = await viewCart();
@@ -14,8 +12,7 @@ export async function loader() {
 
 export default function Cart() {
   const { cart } = useLoaderData();
-  const userCart = cart.data.cart;
-  const catalog = cart.data.catalog;
+  console.log(cart.data);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
@@ -25,29 +22,31 @@ export default function Cart() {
         <button type="button" onClick={() => setModalIsOpen(true)}>Buy all</button>
         <Checkout
           modalIsOpen={modalIsOpen}
-          userCart={userCart}
-          catalog={catalog}
+          cart={cart.data}
           setModalIsOpen={setModalIsOpen}
         />
       </s.Upper>
-      <div>
-        {userCart.map((c) => (
-          catalog.map((p) => (c.idProduct === p._id
-            ? (
-              <s.ContainerProduct>
-                <s.Info>
-                  <img src={p.product.image} alt="" />
-                  <h1>{p.product.name}</h1>
-                </s.Info>
-                <div onClick={() => removeProductToCart(p.product.name, c._id)}>
-                  X
+      <s.ContainerList>
+        {cart.data.map((c) => (
+          cart.data ? (
+            <s.ContainerProduct>
+              <s.Info>
+                <img src={c.product.image} alt="" />
+                <s.NamePrice>
+                  <h1>{c.product.name}</h1>
+                  <h2>{formatInReal(c.product.cost)}</h2>
+                </s.NamePrice>
+              </s.Info>
+              <s.Actions>
 
-                </div>
-              </s.ContainerProduct>
-            )
-            : <></>))))}
+                <h1 onClick={() => removeProductToCart(c.product.name, c.idCart)}>X</h1>
+                <p>Comprar só esse</p>
+              </s.Actions>
+            </s.ContainerProduct>
+          )
+            : <></>))}
 
-      </div>
+      </s.ContainerList>
 
     </s.ContainerPage>
   );
