@@ -92,7 +92,6 @@ export default function Checkout({ cart }) {
           </s.Label>
           <s.Label>
             <s.LabelText>Security Number:</s.LabelText>
-
             <s.Input
               id="i-securityNumber"
               type="text"
