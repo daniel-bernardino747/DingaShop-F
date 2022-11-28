@@ -9,9 +9,9 @@ export default async function finalizeCheckout(body) {
     },
   };
   return postPurchase(body, config)
-    .then((reply) => {
+    .then(async (reply) => {
       if (reply.sucess) {
-        Swal.fire({
+        await Swal.fire({
           icon: 'success',
           title: 'Completed Purchase',
         });
