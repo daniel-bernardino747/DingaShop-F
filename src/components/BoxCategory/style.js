@@ -6,7 +6,7 @@ export const ContainerScroll = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  overflow: scroll;
+  overflow: hidden;
   border-radius: .5em;
   background-color: ${COLOR.GRAY_217};
 `;
