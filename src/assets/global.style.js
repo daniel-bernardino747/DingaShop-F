@@ -78,10 +78,12 @@ export const AuthContainer = styled.div`
   header {
     display: flex;
     justify-content: center;
-    img {
+    a {
     position: absolute;
     top: 1em;
-    height: 3em;
+    }
+    img {
+      height: 3em;
     }
   }
 `;
