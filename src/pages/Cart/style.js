@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const ContainerPage = styled.div`
 width: 953px;
+height: clamp(80vh, 50vh, 100vh);
 display: flex;
 flex-direction: column;
-justify-content: center;
 `;
 export const ContainerProduct = styled.div`
 display:flex;
