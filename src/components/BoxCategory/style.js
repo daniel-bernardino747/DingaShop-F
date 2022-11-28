@@ -6,8 +6,8 @@ export const ContainerScroll = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  border-radius: .5em;
   overflow: scroll;
+  border-radius: .5em;
   background-color: ${COLOR.GRAY_217};
 `;
 export const TitleCategory = styled.h1`

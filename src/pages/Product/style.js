@@ -25,6 +25,7 @@ export const Button = styled.button`
   &&:hover {
     background-color: ${COLOR.GRAY_190};
   }
+  cursor: pointer;
 `;
 export const ButtonBuy = styled(Button)`
   background-color: ${COLOR.GRAY_166};

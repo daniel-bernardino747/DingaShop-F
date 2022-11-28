@@ -18,6 +18,10 @@ padding-left: 19px;
 padding-right: 27px;
 margin-bottom:25px;
 position: relative;
+p{
+  font-weight: 700;
+  cursor: pointer;
+}
 `;
 
 export const Upper = styled.div`
@@ -31,9 +35,6 @@ font-style: normal;
 font-weight: 700;
 font-size: 32px;
 line-height: 37px;
-/* identical to box height */
-
-
 color: #000000;
 }
 button{
@@ -45,52 +46,37 @@ cursor: pointer;
 }
 `;
 
+export const Title = styled.div`
+display: flex;
+flex-direction: column;
+h2{
+  font-style: italic;
+}
+`;
 export const Info = styled.div`
 display: flex;
 justify-content: flex-start;
 align-items: center;
-h1{
-  font-family: 'Ubuntu';
-font-style: normal;
-font-weight: 700;
-font-size: 32px;
-line-height: 37px;
-/* identical to box height */
-
-
-color: #000000;
-}
 img{
   width: 80px;
 height: 80px;
 border-radius: 10px;
 margin-right: 35px;
-
-}
-`;
-
-export const Actions = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-h1{
-  font-weight: 700;
-  cursor: pointer;
-}
-p{
-  position: absolute;
-  bottom: 10px;
-  right: 15px;
-  color: black;
-  font-weight: 700;
-  font-style: italic;
-  cursor: pointer;
 }
 `;
 
 export const NamePrice = styled.div`
 display: flex;
 flex-direction: column;
+h1{
+  font-family: 'Ubuntu';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 37px;
+color: #000000;
+cursor: pointer;
+}
 `;
 
 export const ContainerList = styled.div`
