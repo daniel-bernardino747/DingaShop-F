@@ -4,7 +4,7 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
-// import PrivateRoute from './private.routes';
+import PrivateRoute from './private.routes';
 import App from '../App';
 import Home, { loader as catalogLoader } from '../pages/Home';
 import Login from '../pages/Login';
@@ -40,13 +40,13 @@ const routers = createBrowserRouter(
       />
       <Route
         path="cart"
-        element={<Header><Cart /></Header>}
+        element={<PrivateRoute><Header><Cart /></Header></PrivateRoute>}
         loader={cartLoader}
         errorElement={<Error />}
       />
       <Route
         path="/user"
-        element={<Header><User /></Header>}
+        element={<PrivateRoute><Header><User /></Header></PrivateRoute>}
         loader={userLoader}
         errorElement={<Error />}
       />

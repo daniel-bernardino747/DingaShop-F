@@ -17,6 +17,14 @@ export default function Cart() {
   const { cart } = useLoaderData();
   const { setCheckoutOpen } = useContext(CheckoutContext);
   const [userCart, setUserCart] = useState(cart.data);
+  function removeProduct(name, idCart) {
+    removeProductToCart(name, idCart)
+      .then((ans) => {
+        if (ans.data === 'OK') {
+          window.location.reload();
+        }
+      });
+  }
   return (
     <>
       <s.ContainerPage>
@@ -46,7 +54,7 @@ export default function Cart() {
               </s.Info>
               <s.Actions>
                 {/* eslint-disable-next-line */}
-            <h1 onClick={() => removeProductToCart(p.product.name, p.idCart)}>X</h1>
+            <h1 onClick={() => removeProduct(p.product.name, p.idCart)}>X</h1>
                 {/* eslint-disable-next-line */}
                 <p onClick={() => {setCheckoutOpen(true), setUserCart([p])}}>Buy this</p>
               </s.Actions>

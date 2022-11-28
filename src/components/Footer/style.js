@@ -6,8 +6,8 @@ export const ContainerFooter = styled.footer`
   margin-top: 200px;
 `;
 export const Footer = styled.div`
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  margin-bottom: 0;
   width: 100%;
 height:  10em;
   background-color: #434343;
