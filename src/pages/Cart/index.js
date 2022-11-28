@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import * as s from './style';
 import { removeProductToCart, viewCart } from '../../helpers/cart.helpers';
 import Checkout from '../../components/Checkout';
@@ -17,8 +17,7 @@ export default function Cart() {
   const { cart } = useLoaderData();
   const { setCheckoutOpen } = useContext(CheckoutContext);
   console.log('cart', cart.data);
-  const userCart = cart.data;
-
+  const [userCart, setUserCart] = useState(cart.data);
   return (
     <>
       <s.ContainerPage>
@@ -46,11 +45,12 @@ export default function Cart() {
                   <h2>{formatInReal(p.product.cost)}</h2>
                 </s.NamePrice>
               </s.Info>
-              {/* eslint-disable-next-line */}
-            <p onClick={() => removeProductToCart(p.product.name, p.idCart)}>
-              X
-
-            </p>
+              <s.Actions>
+                {/* eslint-disable-next-line */}
+            <h1 onClick={() => removeProductToCart(p.product.name, p.idCart)}>X</h1>
+                {/* eslint-disable-next-line */}
+                <p onClick={() => {setCheckoutOpen(true), setUserCart([p])}}>Buy this</p>
+              </s.Actions>
             </s.ContainerProduct>
           ))}
         </div>
