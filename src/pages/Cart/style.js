@@ -78,15 +78,21 @@ color: #000000;
 cursor: pointer;
 }
 `;
-
-export const ContainerList = styled.div`
-height: 600px;
-/* overflow: scroll;
- */`;
-
-/* export const Footer = styled.div`
-width: 100%;
-background-color: black;
-position: absolute;
-bottom:0;
-`; */
+export const Actions = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+h1{
+  font-weight: 700;
+  cursor: pointer;
+}
+p{
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  color: black;
+  font-weight: 400;
+  font-style: italic;
+  cursor: pointer;
+}
+`;
