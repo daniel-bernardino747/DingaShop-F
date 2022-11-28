@@ -24,6 +24,7 @@ export default function Checkout({ cart }) {
     finalizeCheckout(body).then((sucess) => {
       if (sucess) {
         setCheckoutOpen(false);
+        global.location.reload();
       }
     });
   };

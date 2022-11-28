@@ -16,7 +16,6 @@ export async function loader() {
 export default function Cart() {
   const { cart } = useLoaderData();
   const { setCheckoutOpen } = useContext(CheckoutContext);
-  console.log('cart', cart.data);
   const [userCart, setUserCart] = useState(cart.data);
   return (
     <>
@@ -34,7 +33,7 @@ export default function Cart() {
           <button type="button" onClick={() => setCheckoutOpen(true)}>Buy all</button>
         </s.Upper>
         <div>
-          {userCart.map((p) => (
+          {cart.data.map((p) => (
             <s.ContainerProduct>
               <s.Info>
                 <img src={p.product.image} alt="" />
