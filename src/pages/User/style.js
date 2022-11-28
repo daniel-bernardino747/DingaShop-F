@@ -36,6 +36,20 @@ export const BoxInformations = styled.div`
     gap: 1em;
   }
 `;
+export const ButtonExit = styled.button.attrs({ type: 'button' })`
+  margin-top: .5em;
+  width: 21em;
+  height: 2.5em;
+  border: none;
+  border-radius: .3em;
+  outline: .1em solid ${COLOR.RED};
+  background-color: ${COLOR.REDo3};
+  transition: box-shadow .3s;
+  padding: .5em;
+  &&:hover {
+    box-shadow: 0 0 .3em ${COLOR.REDo2}; 
+  }
+`;
 export const Container = styled.div`
   margin-bottom: 3em;
 `;

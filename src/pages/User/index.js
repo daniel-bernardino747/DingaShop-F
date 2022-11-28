@@ -1,6 +1,6 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer';
-import { viewUserPerfil } from '../../helpers/auth.helpers';
+import { exitSession, viewUserPerfil } from '../../helpers/auth.helpers';
 import formatInReal from '../../Utils/format.util';
 import * as s from './style';
 
@@ -13,7 +13,16 @@ export async function loader() {
 export default function User() {
   const { data } = useLoaderData();
   const { user, historic } = data;
+  const navigate = useNavigate();
   console.log('user to page user', data);
+
+  function toDeleteSession() {
+    exitSession().then((success) => {
+      if (success) {
+        navigate('/');
+      }
+    });
+  }
   return (
     <>
       <s.Container>
@@ -29,6 +38,7 @@ export default function User() {
               Aqui você encontra suas informações e seu histórico de compras.
               Futuramente poderá modificar essas informações.
             </p>
+            <s.ButtonExit onClick={toDeleteSession}>exit session</s.ButtonExit>
           </div>
         </s.BoxInitial>
         <s.BoxInformations>

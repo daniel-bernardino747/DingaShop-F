@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import {
+  deleteSession,
   getUserPerfil, postSession, postUser, renewSession,
 } from '../services/auth.services';
 
@@ -81,6 +82,36 @@ export async function viewUserPerfil() {
         icon: 'error',
         title: 'Oops...',
         text: 'We were unable to view your perfil user.',
+        footer: `Server error: ${reply.error.response.data.error}`,
+      });
+      return reply.sucess;
+    });
+}
+export async function exitSession() {
+  const token = window.localStorage.getItem('dinga.token');
+  const config = {
+    headers: {
+      Authorization: `Bearer ${JSON.parse(token)}`,
+    },
+  };
+  return deleteSession(config)
+    .then(async (reply) => {
+      if (reply.sucess) {
+        window.localStorage.removeItem('dinga.token');
+        window.localStorage.removeItem('dinga.user');
+        await Swal.fire({
+          icon: 'success',
+          title: 'Session deleted successfully.',
+          text: 'You will be redirected to the main page.',
+        });
+        return reply.sucess;
+      }
+
+      console.log(reply.error.response.data);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'We were unable to delete your session.',
         footer: `Server error: ${reply.error.response.data.error}`,
       });
       return reply.sucess;

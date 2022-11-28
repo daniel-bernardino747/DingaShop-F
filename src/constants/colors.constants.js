@@ -10,6 +10,7 @@ const COLOR = {
   GRAY_217: 'rgba(217, 217, 217, 1)',
   GRAY_217o3: 'rgba(217, 217, 217, .3)',
   RED: 'rgba(240, 0, 0, 1)',
+  REDo3: 'rgba(240, 0, 0, .3)',
   WHITE: 'rgba(250, 250, 250, 1)',
 };
 export default COLOR;
