@@ -8,6 +8,14 @@ export async function viewCart() {
       Authorization: `Bearer ${JSON.parse(token)}`,
     },
   };
+  if (token === null) {
+    await Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'You need to be logged in for this.',
+    });
+    return false;
+  }
   return getCart(config)
     .then((reply) => {
       if (reply.sucess) {
@@ -30,6 +38,14 @@ export async function addProductToCart(idProduct) {
       Authorization: `Bearer ${JSON.parse(token)}`,
     },
   };
+  if (token === null) {
+    await Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'You need to be logged in for this.',
+    });
+    return false;
+  }
   return putProductToCart(idProduct, config)
     .then((reply) => {
       if (reply.sucess) {
@@ -73,10 +89,18 @@ export async function removeProductToCart(name, idCart) {
       Authorization: `Bearer ${JSON.parse(token)}`,
     },
   };
+  if (token === null) {
+    await Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'You need to be logged in for this.',
+    });
+    return false;
+  }
   return deleteProductToCart(idCart, config)
-    .then((reply) => {
+    .then(async (reply) => {
       if (reply.sucess) {
-        Swal.fire(
+        await Swal.fire(
           'Deleted!',
           `The ${name} has been deleted to cart.`,
           'success',

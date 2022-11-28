@@ -17,6 +17,7 @@ export default function Cart() {
   const { cart } = useLoaderData();
   const { setCheckoutOpen } = useContext(CheckoutContext);
   const [userCart, setUserCart] = useState(cart.data);
+  const noProductInCart = cart.data.length < 1;
   function removeProduct(name, idCart) {
     removeProductToCart(name, idCart)
       .then((ans) => {
@@ -38,7 +39,7 @@ export default function Cart() {
               {formatInReal(sumOfCost(userCart))}
             </h2>
           </s.Title>
-          <button type="button" onClick={() => setCheckoutOpen(true)}>Buy all</button>
+          <button type="button" disabled={noProductInCart} onClick={() => setCheckoutOpen(true)}>Buy all</button>
         </s.Upper>
         <div>
           {cart.data.map((p) => (
