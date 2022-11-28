@@ -30,13 +30,11 @@ export default function Product() {
               {product.subtitle && (
               <s.Subtitle>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</s.Subtitle>
               )}
-              {product.review && (
               <s.RatingStars>
                 <p>⭐⭐⭐⭐⭐</p>
                 {' '}
                 <span>154 ratings</span>
               </s.RatingStars>
-              )}
             </div>
             <div>
               <s.Title>{formatInReal(product.cost)}</s.Title>

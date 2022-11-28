@@ -42,6 +42,7 @@ export const ImageProduct = styled.img`
 `;
 export const Text = styled.p`
   margin-top: .5em;
+  line-height: 1.2em;
 `;
 export const Title = styled.h1`
   font-size:2.2em;
